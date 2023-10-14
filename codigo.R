@@ -1,3 +1,5 @@
+# Definindo o tema para gráficos
+
 cores_estat <- c("#A11D21", "#003366", "#CC9900", "#663333", "#FF6600", "#CC9966", "#999966", "#006606", "#008091", "#041835", "#666666")
 
 theme_estat <- function(...) {
@@ -20,3 +22,19 @@ theme_estat <- function(...) {
     )
   )
 }
+
+# Definindo o dataframe para os dados das vendas
+
+vendas <- read.csv('vendas.csv')
+
+# Separando as categorias de produtos
+
+feminina <- vendas[vendas$Category == "Women's Fashion", "Price"]
+masculina <- vendas[vendas$Category == "Men's Fashion", "Price"]
+infantil <- vendas[vendas$Category == "Kids' Fashion", "Price"]
+
+# Calculando a renda anual de cada categoria
+
+sum(feminina, na.rm = T)
+sum(masculina, na.rm = T)
+sum(infantil, na.rm = T)
