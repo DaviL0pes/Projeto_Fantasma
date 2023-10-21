@@ -43,25 +43,13 @@ rfem = sum(feminina, na.rm = T)
 rmas = sum(masculina, na.rm = T)
 rinf = sum(infantil, na.rm = T)
 
-# Repetindo o processo para os produtos que não foram devolvidos
-
-feminina2 <- vendas[vendas$Category == "Women's Fashion" & is.na(vendas$Motivo.devolução), "Price"]
-masculina2 <- vendas[vendas$Category == "Men's Fashion" & is.na(vendas$Motivo.devolução), "Price"]
-infantil2 <- vendas[vendas$Category == "Kids' Fashion" & is.na(vendas$Motivo.devolução), "Price"]
-
-rfem2 = sum(feminina2, na.rm = T)
-rmas2 = sum(masculina2, na.rm = T)
-rinf2 = sum(infantil2, na.rm = T)
-
 # Criando um novo dataframe para elaboração de gráficos
 
 Categorias <- c("Moda Feminina", "Moda Masculina", "Moda Infantil")
 Renda.Anual <- c(rfem, rmas, rinf)
 Freq.Rel <- c("33,24%", "31,49%", "35,27%")
-Renda.Anual2 <- c(rfem2, rmas2, rinf2)
-Freq.Rel2 <- c("32,97%", "30,91%", "36,12%")
 
-rendas_anuais <- data.frame(Categorias, Renda.Anual, Freq.Rel, Renda.Anual2, Freq.Rel2)
+rendas_anuais <- data.frame(Categorias, Renda.Anual, Freq.Rel)
 
 # Primeiro gráfico de frequências
 
@@ -78,17 +66,78 @@ RA1 <- ggplot(rendas_anuais) +
   theme_estat()
 RA1
 
-# Segundo gráfico de frequências
+# Correção da Primeira Entrega Parcial
 
-label2 = str_c(Renda.Anual2, " (", Freq.Rel2, ")")
-RA2 <- ggplot(rendas_anuais) +
-  aes(x = Categorias, y = Renda.Anual2, label = label2) +
-  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
-  geom_text(
-    position = position_dodge(width = .9),
-    vjust = -0.5, #hjust = .5,
-    size = 3
-  ) + 
-  labs(x = "Categoria", y = "Renda Anual") +
-  theme_estat()
-RA2
+# Separando as vendas por mês
+
+jan = vendas[substr(vendas$Data.Venda,1,2) == "1/", ]
+fev = vendas[substr(vendas$Data.Venda,1,2) == "2/", ]
+mar = vendas[substr(vendas$Data.Venda,1,2) == "3/", ]
+abr = vendas[substr(vendas$Data.Venda,1,2) == "4/", ]
+mai = vendas[substr(vendas$Data.Venda,1,2) == "5/", ]
+jun = vendas[substr(vendas$Data.Venda,1,2) == "6/", ]
+jul = vendas[substr(vendas$Data.Venda,1,2) == "7/", ]
+ago = vendas[substr(vendas$Data.Venda,1,2) == "8/", ]
+set = vendas[substr(vendas$Data.Venda,1,2) == "9/", ]
+out = vendas[substr(vendas$Data.Venda,1,2) == "10", ]
+nov = vendas[substr(vendas$Data.Venda,1,2) == "11", ]
+dez = vendas[substr(vendas$Data.Venda,1,2) == "12", ]
+
+# Separando o faturamento dos meses por categoria
+
+fjan <- jan[jan$Category == "Women's Fashion", "Price"]
+ffev <- fev[fev$Category == "Women's Fashion", "Price"]
+fmar <- mar[mar$Category == "Women's Fashion", "Price"]
+fabr <- abr[abr$Category == "Women's Fashion", "Price"]
+fmai <- mai[mai$Category == "Women's Fashion", "Price"]
+fjun <- jun[jun$Category == "Women's Fashion", "Price"]
+fjul <- jul[jul$Category == "Women's Fashion", "Price"]
+fago <- ago[ago$Category == "Women's Fashion", "Price"]
+fset <- set[set$Category == "Women's Fashion", "Price"]
+fout <- out[out$Category == "Women's Fashion", "Price"]
+fnov <- nov[nov$Category == "Women's Fashion", "Price"]
+fdez <- dez[dez$Category == "Women's Fashion", "Price"]
+
+mjan <- jan[jan$Category == "Men's Fashion", "Price"]
+mfev <- fev[fev$Category == "Men's Fashion", "Price"]
+mmar <- mar[mar$Category == "Men's Fashion", "Price"]
+mabr <- abr[abr$Category == "Men's Fashion", "Price"]
+mmai <- mai[mai$Category == "Men's Fashion", "Price"]
+mjun <- jun[jun$Category == "Men's Fashion", "Price"]
+mjul <- jul[jul$Category == "Men's Fashion", "Price"]
+mago <- ago[ago$Category == "Men's Fashion", "Price"]
+mset <- set[set$Category == "Men's Fashion", "Price"]
+mout <- out[out$Category == "Men's Fashion", "Price"]
+mnov <- nov[nov$Category == "Men's Fashion", "Price"]
+mdez <- dez[dez$Category == "Men's Fashion", "Price"]
+
+ijan <- jan[jan$Category == "Kids' Fashion", "Price"]
+ifev <- fev[fev$Category == "Kids' Fashion", "Price"]
+imar <- mar[mar$Category == "Kids' Fashion", "Price"]
+iabr <- abr[abr$Category == "Kids' Fashion", "Price"]
+imai <- mai[mai$Category == "Kids' Fashion", "Price"]
+ijun <- jun[jun$Category == "Kids' Fashion", "Price"]
+ijul <- jul[jul$Category == "Kids' Fashion", "Price"]
+iago <- ago[ago$Category == "Kids' Fashion", "Price"]
+iset <- set[set$Category == "Kids' Fashion", "Price"]
+iout <- out[out$Category == "Kids' Fashion", "Price"]
+inov <- nov[nov$Category == "Kids' Fashion", "Price"]
+idez <- dez[dez$Category == "Kids' Fashion", "Price"]
+
+# Análise destrinchada do faturamento anual por categoria
+
+# Moda Feminina
+
+Janeiro <- c((sum(fjan, na.rm = T)), (sum(mjan, na.rm = T)), (sum(ijan, na.rm = T)))
+Fevereiro <- c((sum(ffev, na.rm = T)), (sum(mfev, na.rm = T)), (sum(ifev, na.rm = T)))
+Marco <- c((sum(fmar, na.rm = T)), (sum(mmar, na.rm = T)), (sum(imar, na.rm = T)))
+Abril <- c((sum(fabr, na.rm = T)), (sum(mabr, na.rm = T)), (sum(iabr, na.rm = T)))
+Maio <- c((sum(fmai, na.rm = T)), (sum(mmai, na.rm = T)), (sum(imai, na.rm = T)))
+Junho <- c((sum(fjun, na.rm = T)), (sum(mjun, na.rm = T)), (sum(ijun, na.rm = T)))
+Julho <- c((sum(fjul, na.rm = T)), (sum(mjul, na.rm = T)), (sum(ijul, na.rm = T)))
+Agosto <- c((sum(fago, na.rm = T)), (sum(mago, na.rm = T)), (sum(iago, na.rm = T)))
+Setembro <- c((sum(fset, na.rm = T)), (sum(mset, na.rm = T)), (sum(iset, na.rm = T)))
+Outubro <- c((sum(fout, na.rm = T)), (sum(mout, na.rm = T)), (sum(iout, na.rm = T)))
+Novembro <- c((sum(fnov, na.rm = T)), (sum(mnov, na.rm = T)), (sum(inov, na.rm = T)))
+Dezembro <- c((sum(fdez, na.rm = T)), (sum(mdez, na.rm = T)), (sum(idez, na.rm = T)))
+
