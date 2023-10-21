@@ -126,18 +126,13 @@ idez <- dez[dez$Category == "Kids' Fashion", "Price"]
 
 # Análise destrinchada do faturamento anual por categoria
 
-# Moda Feminina
+# Criando tabelas para cada categoria
 
-Janeiro <- c((sum(fjan, na.rm = T)), (sum(mjan, na.rm = T)), (sum(ijan, na.rm = T)))
-Fevereiro <- c((sum(ffev, na.rm = T)), (sum(mfev, na.rm = T)), (sum(ifev, na.rm = T)))
-Marco <- c((sum(fmar, na.rm = T)), (sum(mmar, na.rm = T)), (sum(imar, na.rm = T)))
-Abril <- c((sum(fabr, na.rm = T)), (sum(mabr, na.rm = T)), (sum(iabr, na.rm = T)))
-Maio <- c((sum(fmai, na.rm = T)), (sum(mmai, na.rm = T)), (sum(imai, na.rm = T)))
-Junho <- c((sum(fjun, na.rm = T)), (sum(mjun, na.rm = T)), (sum(ijun, na.rm = T)))
-Julho <- c((sum(fjul, na.rm = T)), (sum(mjul, na.rm = T)), (sum(ijul, na.rm = T)))
-Agosto <- c((sum(fago, na.rm = T)), (sum(mago, na.rm = T)), (sum(iago, na.rm = T)))
-Setembro <- c((sum(fset, na.rm = T)), (sum(mset, na.rm = T)), (sum(iset, na.rm = T)))
-Outubro <- c((sum(fout, na.rm = T)), (sum(mout, na.rm = T)), (sum(iout, na.rm = T)))
-Novembro <- c((sum(fnov, na.rm = T)), (sum(mnov, na.rm = T)), (sum(inov, na.rm = T)))
-Dezembro <- c((sum(fdez, na.rm = T)), (sum(mdez, na.rm = T)), (sum(idez, na.rm = T)))
+Meses <- c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro")
+RendasF <- c((sum(fjan, na.rm = T)),(sum(ffev, na.rm = T)),(sum(fmar, na.rm = T)),(sum(fabr, na.rm = T)),(sum(fmai, na.rm = T)),(sum(fjun, na.rm = T)),(sum(fjul, na.rm = T)),(sum(fago, na.rm = T)),(sum(fset, na.rm = T)),(sum(fout, na.rm = T)),(sum(fnov, na.rm = T)),(sum(fdez, na.rm = T)))
+RendasM <- c((sum(mjan, na.rm = T)),(sum(mfev, na.rm = T)),(sum(mmar, na.rm = T)),(sum(mabr, na.rm = T)),(sum(mmai, na.rm = T)),(sum(mjun, na.rm = T)),(sum(mjul, na.rm = T)),(sum(mago, na.rm = T)),(sum(mset, na.rm = T)),(sum(mout, na.rm = T)),(sum(mnov, na.rm = T)),(sum(mdez, na.rm = T)))
+RendasI <- c((sum(ijan, na.rm = T)),(sum(ifev, na.rm = T)),(sum(imar, na.rm = T)),(sum(iabr, na.rm = T)),(sum(imai, na.rm = T)),(sum(ijun, na.rm = T)),(sum(ijul, na.rm = T)),(sum(iago, na.rm = T)),(sum(iset, na.rm = T)),(sum(iout, na.rm = T)),(sum(inov, na.rm = T)),(sum(idez, na.rm = T)))
 
+FatF <- data.frame(Meses, RendasF)
+FatM <- data.frame(Meses, RendasM)
+FatI <- data.frame(Meses, RendasI)
