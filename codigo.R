@@ -180,3 +180,43 @@ RI1
 
 
 # Gráficos trimestrais e semestrais
+
+FattF <- data.frame(Trimestre = c("Primeiro", "Segundo", "Terceiro", "Quarto"), Faturamento = c(5292, 1678, 5186, 5865))
+FattF$Trimestre <- factor(FattF$Trimestre, levels = unique(FattF$Trimestre), ordered = T)
+FattM <- data.frame(Trimestre = c("Primeiro", "Segundo", "Terceiro", "Quarto"), Faturamento = c(5088, 1784, 4224, 6028))
+FattM$Trimestre <- factor(FattM$Trimestre, levels = unique(FattM$Trimestre), ordered = T)
+FattI <- data.frame(Trimestre = c("Primeiro", "Segundo", "Terceiro", "Quarto"), Faturamento = c(3972, 1858, 6018, 7407))
+FattI$Trimestre <- factor(FattI$Trimestre, levels = unique(FattI$Trimestre), ordered = T)
+
+ggplot(FattF) +
+  aes(x = Trimestre, y = Faturamento, label = Faturamento) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Trimestre", y = "Faturamento") +
+  theme_estat()
+
+ggplot(FattM) +
+  aes(x = Trimestre, y = Faturamento, label = Faturamento) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Trimestre", y = "Faturamento") +
+  theme_estat()
+
+ggplot(FattI) +
+  aes(x = Trimestre, y = Faturamento, label = Faturamento) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Trimestre", y = "Faturamento") +
+  theme_estat()
