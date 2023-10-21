@@ -177,3 +177,6 @@ RI1 <- ggplot(FatI) +
   labs(x = "Mês", y = "Faturamento") + scale_x_discrete(guide = guide_axis(n.dodge=2)) +
   theme_estat()
 RI1
+
+
+# Gráficos trimestrais e semestrais
