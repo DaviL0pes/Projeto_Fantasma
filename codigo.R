@@ -136,7 +136,9 @@ RendasI <- c((sum(ijan, na.rm = T)),(sum(ifev, na.rm = T)),(sum(imar, na.rm = T)
 FatF <- data.frame(Meses, RendasF)
 FatF$Meses <- factor(FatF$Meses, levels = unique(FatF$Meses), ordered = T)
 FatM <- data.frame(Meses, RendasM)
+FatM$Meses <- factor(FatM$Meses, levels = unique(FatM$Meses), ordered = T)
 FatI <- data.frame(Meses, RendasI)
+FatI$Meses <- factor(FatI$Meses, levels = unique(FatI$Meses), ordered = T)
 
 # Elaboração dos Gráficos
 
@@ -148,6 +150,30 @@ RF1 <- ggplot(FatF) +
     vjust = -0.5, #hjust = .5,
     size = 3
   ) + 
-  labs(x = "Mês", y = "Faturamento") +
+  labs(x = "Mês", y = "Faturamento") + scale_x_discrete(guide = guide_axis(n.dodge=2)) +
   theme_estat()
 RF1
+
+RM1 <- ggplot(FatM) +
+  aes(x = Meses, y = RendasM, label = RendasM) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Mês", y = "Faturamento") + scale_x_discrete(guide = guide_axis(n.dodge=2)) +
+  theme_estat()
+RM1
+
+RI1 <- ggplot(FatI) +
+  aes(x = Meses, y = RendasI, label = RendasI) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Mês", y = "Faturamento") + scale_x_discrete(guide = guide_axis(n.dodge=2)) +
+  theme_estat()
+RI1
