@@ -134,5 +134,20 @@ RendasM <- c((sum(mjan, na.rm = T)),(sum(mfev, na.rm = T)),(sum(mmar, na.rm = T)
 RendasI <- c((sum(ijan, na.rm = T)),(sum(ifev, na.rm = T)),(sum(imar, na.rm = T)),(sum(iabr, na.rm = T)),(sum(imai, na.rm = T)),(sum(ijun, na.rm = T)),(sum(ijul, na.rm = T)),(sum(iago, na.rm = T)),(sum(iset, na.rm = T)),(sum(iout, na.rm = T)),(sum(inov, na.rm = T)),(sum(idez, na.rm = T)))
 
 FatF <- data.frame(Meses, RendasF)
+FatF$Meses <- factor(FatF$Meses, levels = unique(FatF$Meses), ordered = T)
 FatM <- data.frame(Meses, RendasM)
 FatI <- data.frame(Meses, RendasI)
+
+# Elaboração dos Gráficos
+
+RF1 <- ggplot(FatF) +
+  aes(x = Meses, y = RendasF, label = RendasF) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Mês", y = "Faturamento") +
+  theme_estat()
+RF1
