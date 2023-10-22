@@ -220,3 +220,7 @@ ggplot(FattI) +
   ) + 
   labs(x = "Trimestre", y = "Faturamento") +
   theme_estat()
+
+
+# Variação do preço por marca 
+
