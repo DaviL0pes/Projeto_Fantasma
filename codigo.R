@@ -221,6 +221,20 @@ ggplot(FattI) +
   labs(x = "Trimestre", y = "Faturamento") +
   theme_estat()
 
+################################################################################
 
-# Variação do preço por marca 
+# Segunda Entrega: Variação do preço por marca 
 
+# Registrando as diferentes marcas
+
+unique(vendas$Brand)
+
+# Separando vetores de preço por marca
+
+adidas <- vendas[vendas$Brand == "Adidas", "Price"]
+hem <- vendas[vendas$Brand == "H&M", "Price"]
+zara <- vendas[vendas$Brand == "Zara", "Price"]
+gucci <- vendas[vendas$Brand == "Gucci", "Price"]
+nike <- vendas[vendas$Brand == "Nike", "Price"]
+
+# Calculando medidas de dispersão  para cada uma das marcas
