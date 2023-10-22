@@ -1,6 +1,9 @@
+# Primeira Entrega: Faturamento anual por categoria
+
 # Importando pacotes
 
 library(tidyverse)
+library(dplyr)
 
 # Definindo o tema para gráficos
 
@@ -237,4 +240,84 @@ zara <- vendas[vendas$Brand == "Zara", "Price"]
 gucci <- vendas[vendas$Brand == "Gucci", "Price"]
 nike <- vendas[vendas$Brand == "Nike", "Price"]
 
-# Calculando medidas de dispersão  para cada uma das marcas
+# Calculando medidas de dispersão e criando box plots para cada uma das marcas
+
+# Adidas
+
+range(adidas, na.rm = T) # 10 <-> 96, Amplitude de 86
+var(adidas, na.rm = T) #270,04
+sd(adidas, na.rm = T) #16,43
+sd(adidas, na.rm = T)/mean(adidas, na.rm = T) #0,3194
+
+bpa <- vendas %>% filter(Brand == "Adidas") %>% ggplot() +
+  aes(x=factor(""), y=Price) +
+  geom_boxplot(fill=c("#A11D21"), width = 0.5) +
+  guides(fill=FALSE) +
+  stat_summary(fun="mean", geom="point", shape=23, size=3, fill="white")+
+  labs(x="", y="Preço")+
+  theme_estat()
+bpa
+
+# H&M
+
+range(hem, na.rm = T) # 10 <-> 100, Amplitude de 90
+var(hem, na.rm = T) #264,45
+sd(hem, na.rm = T) #16,26
+sd(hem, na.rm = T)/mean(hem, na.rm = T) #0,3289
+
+bph <- vendas %>% filter(Brand == "H&M") %>% ggplot() +
+  aes(x=factor(""), y=Price) +
+  geom_boxplot(fill=c("#A11D21"), width = 0.5) +
+  guides(fill=FALSE) +
+  stat_summary(fun="mean", geom="point", shape=23, size=3, fill="white")+
+  labs(x="", y="Preço")+
+  theme_estat()
+bph
+
+# Zara
+
+range(zara, na.rm = T) # 10 <-> 90, Amplitude de 80
+var(zara, na.rm = T) #235,99
+sd(zara, na.rm = T) #15,36
+sd(zara, na.rm = T)/mean(zara, na.rm = T) #0,2906
+
+bpz <- vendas %>% filter(Brand == "Zara") %>% ggplot() +
+  aes(x=factor(""), y=Price) +
+  geom_boxplot(fill=c("#A11D21"), width = 0.5) +
+  guides(fill=FALSE) +
+  stat_summary(fun="mean", geom="point", shape=23, size=3, fill="white")+
+  labs(x="", y="Preço")+
+  theme_estat()
+bpz
+
+# Gucci
+
+range(gucci, na.rm = T) # 10 <-> 92, Amplitude de 82
+var(gucci, na.rm = T) #244,23
+sd(gucci, na.rm = T) #15,63
+sd(gucci, na.rm = T)/mean(gucci, na.rm = T) #0,3144
+
+bpg <- vendas %>% filter(Brand == "Gucci") %>% ggplot() +
+  aes(x=factor(""), y=Price) +
+  geom_boxplot(fill=c("#A11D21"), width = 0.5) +
+  guides(fill=FALSE) +
+  stat_summary(fun="mean", geom="point", shape=23, size=3, fill="white")+
+  labs(x="", y="Preço")+
+  theme_estat()
+bpg
+
+# Nike
+
+range(nike, na.rm = T) # 10 <-> 90, Amplitude de 80
+var(nike, na.rm = T) #294,31
+sd(nike, na.rm = T) #17,16
+sd(nike, na.rm = T)/mean(nike, na.rm = T) #0,3447
+
+bpn <- vendas %>% filter(Brand == "Nike") %>% ggplot() +
+  aes(x=factor(""), y=Price) +
+  geom_boxplot(fill=c("#A11D21"), width = 0.5) +
+  guides(fill=FALSE) +
+  stat_summary(fun="mean", geom="point", shape=23, size=3, fill="white")+
+  labs(x="", y="Preço")+
+  theme_estat()
+bpn
