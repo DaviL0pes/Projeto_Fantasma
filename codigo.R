@@ -322,6 +322,18 @@ bpn <- vendas %>% filter(Brand == "Nike") %>% ggplot() +
   theme_estat()
 bpn
 
+# Box plot geral
+
+vendas %>% drop_na() %>% ggplot() +
+  aes(x = Brand, y = Price) +
+  geom_boxplot(fill = c("#A11D21"), width = 0.5) +
+  stat_summary(
+    fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  labs(x = "Marca", y = "Preço") +
+  theme_estat()
+ggsave("box_bi.pdf", width = 158, height = 93, units = "mm")
+
 ################################################################################
 
 # Terceira Entrega: Relação entre categorias (apenas feminino e masculino) e cor
@@ -371,3 +383,18 @@ ggplot(cmas) +
 
 # Teste qui quadrado
 
+cores <- data.frame('Neutras'= c(110,125), 'Frias'= c(121,119), 'Quentes' = c(125,100))
+cores
+
+chisq.test(cores)
+
+# Coeficiente de contingencia
+
+n <- 110+121+125+125+119+100
+
+c <- sqrt(3.55/703.55)
+
+# Corrigido
+
+ccor <- c/(sqrt(0.5))
+ccor
