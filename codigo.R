@@ -321,3 +321,53 @@ bpn <- vendas %>% filter(Brand == "Nike") %>% ggplot() +
   labs(x="", y="Preço")+
   theme_estat()
 bpn
+
+################################################################################
+
+# Terceira Entrega: Relação entre categorias (apenas feminino e masculino) e cor
+
+# Registrando as diferentes cores
+
+unique(vendas$Color)
+
+#Construção de gráficos
+
+feminina <- vendas[vendas$Category == "Women's Fashion", ]
+masculina <- vendas[vendas$Category == "Men's Fashion", ]
+
+cfem <- feminina %>%
+  group_by(Color) %>%
+  summarise(counts = n())
+cfem <- drop_na(cfem)
+cfem
+
+ggplot(cfem) +
+  aes(x = Color, y = counts, label = counts) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Cor", y = "Frequência absoluta") +
+  theme_estat()
+
+cmas <- masculina %>%
+  group_by(Color) %>%
+  summarise(counts = n())
+cmas <- drop_na(cmas)
+cmas
+
+ggplot(cmas) +
+  aes(x = Color, y = counts, label = counts) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(
+    position = position_dodge(width = .9),
+    vjust = -0.5, #hjust = .5,
+    size = 3
+  ) + 
+  labs(x = "Cor", y = "Frequência absoluta") +
+  theme_estat()
+
+# Teste qui quadrado
+
